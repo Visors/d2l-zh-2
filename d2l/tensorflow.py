@@ -301,9 +301,8 @@ class Animator:
         for x, y, fmt in zip(self.X, self.Y, self.fmts):
             self.axes[0].plot(x, y, fmt)
         self.config_axes()
-        display.clear_output(wait=True)
         display.display(self.fig)
-        plt.draw()
+        display.clear_output(wait=True)
 
 def train_ch3(net, train_iter, test_iter, loss, num_epochs, updater):
     """训练模型（定义见第3章）
