@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 DATA_HUB = dict()
 DATA_URL = 'http://d2l-data.s3-accelerate.amazonaws.com/'
 
@@ -278,6 +280,7 @@ class Animator:
         self.config_axes = lambda: d2l.set_axes(
             self.axes[0], xlabel, ylabel, xlim, ylim, xscale, yscale, legend)
         self.X, self.Y, self.fmts = None, None, fmts
+        plt.ion()
 
     def add(self, x, y):
         # 向图表中添加多个数据点
@@ -298,8 +301,9 @@ class Animator:
         for x, y, fmt in zip(self.X, self.Y, self.fmts):
             self.axes[0].plot(x, y, fmt)
         self.config_axes()
-        display.display(self.fig)
         display.clear_output(wait=True)
+        display.display(self.fig)
+        plt.draw()
 
 def train_ch3(net, train_iter, test_iter, loss, num_epochs, updater):
     """训练模型（定义见第3章）
